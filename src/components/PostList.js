@@ -21,15 +21,9 @@ class PostList extends React.Component {
 
         return (
             <div>
-
                 {this.props.allPostsQuery.allPosts.map(post => (
-
                     <PostSummary post={post} key={post.id}/>
-
-
                 ))}
-
-
             </div>
         )
     }

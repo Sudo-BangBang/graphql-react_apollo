@@ -43,3 +43,34 @@
 .post-summary a{
   color: #9E9E9E;
 }
+
+.login{
+  float: right;
+  border: 1px solid;
+  borderRadius:2px;
+  padding: 10px;
+}
+
+.login input {
+  background: #616161;
+  border: none;
+  color: rgb(66, 165, 245);
+  display: block;
+  margin-bottom: 6px;
+  font-weight: bold;
+  padding-left: 5px;
+}
+
+.button-primary{
+  background: rgb(66, 165, 245);
+  border: none;
+  color: #616161;
+  font-weight: bold;
+  margin-right: 5px;
+}
+
+.button-secondary{
+  background: #616161;
+  border: none;
+  color: rgb(66, 165, 245);
+}

@@ -15,7 +15,7 @@ class CommentCreate extends React.Component {
                 <textarea
                     value={this.state.comment}
                     onChange={e => this.setState({comment: e.target.value})}/><br/>
-                <button onClick={this.handlePost}>Post</button>
+                <button className="button-primary" onClick={this.handlePost}>Post</button>
             </div>
         )
     }
