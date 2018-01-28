@@ -1,8 +1,8 @@
 import React from 'react'
-import { graphql } from 'react-apollo'
+import {graphql} from 'react-apollo'
 import gql from 'graphql-tag'
-import FontAwesomeIcon from '@fortawesome/react-fontawesome'
-import { faCommentAlt } from '@fortawesome/fontawesome-free-solid'
+
+import PostSummary from './PostSummary'
 
 class PostList extends React.Component {
 
@@ -23,13 +23,9 @@ class PostList extends React.Component {
             <div>
 
                 {this.props.allPostsQuery.allPosts.map(post => (
-                    <div style={{padding: "20px", marginTop: "0px", backgroundColor: "#212121", borderBottom: "1px solid #616161", color: "#BDBDBD"}} key={post.id}>
-                        <a href={post.postLink.url} style={{color: "#1976D2"}}>{post.postLink.description}</a><br/>
-                        <span style={{color:"#9E9E9E"}}>
-                            submitted {post.createdAt} by <a>{post.postLink.postedBy.name}</a> to <a>{post.blog.name}</a><br/>
-                            <FontAwesomeIcon icon={faCommentAlt} pull="left" fixedWidth/> <a>{post.comments.length} comments</a>
-                        </span>
-                    </div>
+
+                    <PostSummary post={post} key={post.id}/>
+
 
                 ))}
 
@@ -43,6 +39,7 @@ const ALL_POSTS_QUERY = gql`
     query AllPostsQuery {
         allPosts{
           id
+          createdAt
           postLink{
             description
             url
@@ -53,6 +50,7 @@ const ALL_POSTS_QUERY = gql`
           comments{
             id
             text
+            createdAt
             user{
               name
             }

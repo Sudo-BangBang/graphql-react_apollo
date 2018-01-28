@@ -27,3 +27,19 @@
   from { transform: rotate(0deg); }
   to { transform: rotate(360deg); }
 }
+
+.post{
+  padding: 20px;
+  margin-top: 0px;
+  background-color: #212121;
+  border-bottom: 1px solid #616161;
+  color: #BDBDBD;
+}
+
+.post-summary {
+  color: #9E9E9E;
+}
+
+.post-summary a{
+  color: #9E9E9E;
+}
