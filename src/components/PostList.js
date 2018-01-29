@@ -1,7 +1,7 @@
 import React from 'react'
 import {graphql} from 'react-apollo'
-import gql from 'graphql-tag'
 
+import {ALL_POSTS_QUERY} from '../Queries'
 import PostSummary from './PostSummary'
 
 class PostList extends React.Component {
@@ -29,37 +29,10 @@ class PostList extends React.Component {
     }
 }
 
-const ALL_POSTS_QUERY = gql`
-    query AllPostsQuery {
-        allPosts{
-          id
-          createdAt
-          postLink{
-            description
-            url
-            postedBy{
-              name
-            }
-          }
-          comments{
-            id
-            text
-            createdAt
-            user{
-              name
-            }
-          }
-        blog{
-          name
-        }
-      }
-    }
-`
-
 const PostListWithQuery = graphql(ALL_POSTS_QUERY, {
     name: 'allPostsQuery',
     options: {
-        fetchPolicy: 'network-only',
+        fetchPolicy: 'cache-and-network',
     },
 })(PostList);
 

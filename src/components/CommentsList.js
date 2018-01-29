@@ -11,7 +11,7 @@ class CommentsList extends React.Component {
             <div style={{padding: "10px", backgroundColor: "#424242", marginTop: "10px"}}>
 
                 {this.props.comments.map(comment => (
-                    <Comment comment={comment}/>
+                    <Comment comment={comment} key={comment.id}/>
                 ))}
 
                 <CommentCreate subjectId={this.props.subjectId}/>
