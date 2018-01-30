@@ -1,24 +1,21 @@
 import React from 'react'
 
-import CommentCreate from './CommentCreate'
 import Comment from './Comment'
 
-class CommentsList extends React.Component {
+class CommentsCommentsList extends React.Component {
 
     render() {
 
         return (
-            <div style={{padding: "10px", backgroundColor: "#424242", marginTop: "10px"}}>
+            <div style={{padding: "10px", paddingLeft: "20px", marginTop: "10px", borderLeft: "1px solid rgb(66, 165, 245)"}}>
 
                 {this.props.commentList.comments.map(comment => (
                     <Comment comment={comment} key={comment.id}/>
                 ))}
-
-                <CommentCreate subjectId={this.props.subjectId}/>
 
             </div>
         )
     }
 }
 
-export default CommentsList
+export default CommentsCommentsList

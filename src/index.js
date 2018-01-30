@@ -41,32 +41,13 @@ const client = new ApolloClient({
     link: authLink.concat(createHttpLink({
         uri: 'http://localhost:8080/graphql',
     })),
-    cache: new InMemoryCache(),
+    cache: new InMemoryCache({
+        //This allows us to retrieve an object from the cache by its ID
+        dataIdFromObject: object => object.id,
+    }),
 });
 
-client.query({ query: gql`{
-    allBlogs{
-        name
-        description
-        id
-        posts{
-            id
-            postLink{
-                description
-                url
-                postedBy{
-                    name
-                }
-            }
-            comments{
-                text
-                user{
-                    name
-                }
-            }
-        }
-    }
-}` }).then(console.log);
+console.log(client);
 
 ReactDOM.render(
     <Router>

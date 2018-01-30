@@ -23,7 +23,7 @@ class PostSummary extends React.Component {
     renderComments(){
         if(this.state.showComments){
             return(
-                <CommentsList comments={this.props.post.comments} subjectId={this.props.post.id}/>
+                <CommentsList commentList={this.props.post.commentList} subjectId={this.props.post.id}/>
             )
         }
     }
@@ -36,7 +36,13 @@ class PostSummary extends React.Component {
                 <a href={post.postLink.url} style={{color: "#1976D2"}}>{post.postLink.description}</a><br/>
                 <span className="post-summary">
                     submitted {post.createdAt} by <a href={"#"}>{post.postLink.postedBy.name}</a> to <a href={"#"}>{post.blog.name}</a><br/>
-                    <FontAwesomeIcon icon={faCommentAlt} pull="left" fixedWidth/> <a href={"#"} onClick={this.commentsClicked}>{post.comments.length} comments</a>
+                    <FontAwesomeIcon
+                        icon={faCommentAlt}
+                        pull="left"
+                        fixedWidth/>
+                        <a href={"#"} onClick={this.commentsClicked}>
+                            {post.commentList.count} comments
+                        </a>
                     {this.renderComments()}
                 </span>
             </div>

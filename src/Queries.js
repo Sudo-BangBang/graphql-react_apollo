@@ -1,5 +1,16 @@
 import gql from 'graphql-tag'
 
+export const FRAGMENT_COMMENT = gql`
+fragment comment on Comment{
+    id
+    text
+    createdAt
+    user{
+        name
+    }
+}
+`;
+
 export const ALL_POSTS_QUERY = gql`
 query AllPostsQuery {
     allPosts{
@@ -12,17 +23,27 @@ query AllPostsQuery {
                 name
             }
         }
-        comments{
-            id
-            text
-            createdAt
-            user{
-                name
+        commentList{
+            count
+            comments{
+                ...comment
+                commentList{
+                    count
+                    comments{
+                        ...comment
+                        commentList{
+                            count
+                            comments{
+                                ...comment
+                            }
+                        }
+                    }
+                }
             }
         }
         blog{
             name
         }
     }
-}
+}${FRAGMENT_COMMENT}
 `;
