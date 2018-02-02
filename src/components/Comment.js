@@ -4,6 +4,7 @@ import {faReply, faArrowCircleDown, faArrowCircleRight} from '@fortawesome/fonta
 
 import CommentsCommentsList from './CommentsCommentsList'
 import CommentCreate from './CommentCreate'
+import CommentVotes from './CommentVotes'
 
 class Comment extends React.Component {
 
@@ -61,8 +62,12 @@ class Comment extends React.Component {
         if(!this.state.collapsed){
             return(
                 <span>
-                    {this.props.comment.text}<br/>
+                    <div style={{paddingLeft: "10px"}}>
+                        {this.props.comment.text}
+                    </div>
+                    <CommentVotes commentId={this.props.comment.id} voteTotal={this.props.comment.voteTotal}/>
                 </span>
+
             )
         }
     }
@@ -90,14 +95,17 @@ class Comment extends React.Component {
             <div className="comment" key={comment.id} style={{paddingBottom: "10px"}}>
                 {this.renderCollapseArrow()}
                 <div style={{paddingBottom: "5px"}}>
-                    <a href={"#"} style={{color: "#9E9E9E"}}>{comment.user.name}</a> - {comment.createdAt}
-                    &nbsp;
-                    <a href={"#"} onClick={this.replyClicked}>
-                        <FontAwesomeIcon
-                            icon={faReply}
-                            fixedWidth/>
-                        reply
-                    </a>
+                    <div style={{display: "inline-block"}}>
+                        <a href={"#"} style={{color: "#9E9E9E"}}>{comment.user.name}</a> - {comment.createdAt}
+                        &nbsp;
+                        <a href={"#"} onClick={this.replyClicked}>
+                            <FontAwesomeIcon
+                                icon={faReply}
+                                fixedWidth/>
+                            reply
+                        </a>
+                    </div>
+
                 </div>
                 {this.renderText()}
                 {this.renderChildComments()}

@@ -4,7 +4,7 @@ import gql from 'graphql-tag'
 import FontAwesomeIcon from '@fortawesome/react-fontawesome'
 import {faLevelUpAlt, faLevelDownAlt} from '@fortawesome/fontawesome-free-solid'
 
-class PostVotes extends React.Component {
+class CommentVotes extends React.Component {
 
     render() {
 
@@ -15,24 +15,23 @@ class PostVotes extends React.Component {
         }
 
         return (
-            <div style={{display: "inline-block", marginRight: "10px", verticalAlign: "top"}}>
+            <div style={{marginTop: "10px"}}>
                 <FontAwesomeIcon
                     icon={faLevelUpAlt}
                     flip="horizontal"
                     fixedWidth
-                    style={{cursor: "pointer", display: "block"}}
+                    style={{cursor: "pointer"}}
                     onClick={() => {
                         this.handleVote(1)
                     }}
                 />
-                <div style={{textAlign: "center"}}>
+                <span>
                     {voteTotal}
-                </div>
+                </span>
                 <FontAwesomeIcon
                     icon={faLevelDownAlt}
-                    flip="horizontal"
                     fixedWidth
-                    style={{cursor: "pointer", display: "block"}}
+                    style={{cursor: "pointer"}}
                     onClick={() => {
                         this.handleVote(-1)
                     }}
@@ -42,28 +41,28 @@ class PostVotes extends React.Component {
     }
 
     handleVote = async (vote) => {
-        const id = this.props.postId;
+        const id = this.props.commentId;
         let voteTotal = 0;
         if (this.props.voteTotal !== null) {
             voteTotal = this.props.voteTotal;
         }
         voteTotal += vote;
-        await this.props.updatePostMutation({variables: {id, voteTotal}});
+        await this.props.updateCommentMutation({variables: {id, voteTotal}});
     }
 
 }
 
-const UPDATE_POST_MUTATION = gql`
-    mutation updatePostMutation($id: String!, $voteTotal: Int!) {
-        updatePost(id: $id, voteTotal: $voteTotal) {
+const UPDATE_COMMENT_MUTATION = gql`
+    mutation updateCommentMutation($id: String!, $voteTotal: Int!) {
+        updateComment(id: $id, voteTotal: $voteTotal) {
             id
             voteTotal
         }
     }
 `;
 
-const PostVotesWithMutation = graphql(UPDATE_POST_MUTATION, {
-    name: 'updatePostMutation'
-})(PostVotes);
+const CommentVotesWithMutation = graphql(UPDATE_COMMENT_MUTATION, {
+    name: 'updateCommentMutation'
+})(CommentVotes);
 
-export default PostVotesWithMutation
+export default CommentVotesWithMutation
