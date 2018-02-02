@@ -8,6 +8,10 @@ fragment comment on Comment{
     user{
         name
     }
+    voteTotal
+    voteList{
+        count
+    }
 }
 `;
 
@@ -40,6 +44,10 @@ query AllPostsQuery {
                     }
                 }
             }
+        }
+        voteTotal
+        voteList{
+            count
         }
         blog{
             name

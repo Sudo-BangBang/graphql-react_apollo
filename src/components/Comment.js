@@ -1,7 +1,6 @@
 import React from 'react'
 import FontAwesomeIcon from '@fortawesome/react-fontawesome'
 import {faReply, faArrowCircleDown, faArrowCircleRight} from '@fortawesome/fontawesome-free-solid'
-import { defaultDataIdFromObject } from 'apollo-cache-inmemory';
 
 import CommentsCommentsList from './CommentsCommentsList'
 import CommentCreate from './CommentCreate'

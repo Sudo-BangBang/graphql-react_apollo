@@ -3,6 +3,7 @@ import FontAwesomeIcon from '@fortawesome/react-fontawesome'
 import {faCommentAlt} from '@fortawesome/fontawesome-free-solid'
 
 import CommentsList from './CommentsList'
+import PostVotes from './PostVotes'
 
 class PostSummary extends React.Component {
 
@@ -33,18 +34,21 @@ class PostSummary extends React.Component {
 
         return (
             <div className="post" key={post.id}>
-                <a href={post.postLink.url} style={{color: "#1976D2"}}>{post.postLink.description}</a><br/>
-                <span className="post-summary">
-                    submitted {post.createdAt} by <a href={"#"}>{post.postLink.postedBy.name}</a> to <a href={"#"}>{post.blog.name}</a><br/>
-                    <FontAwesomeIcon
-                        icon={faCommentAlt}
-                        pull="left"
-                        fixedWidth/>
-                        <a href={"#"} onClick={this.commentsClicked}>
-                            {post.commentList.count} comments
-                        </a>
-                    {this.renderComments()}
-                </span>
+                <PostVotes postId={post.id} voteTotal={post.voteTotal}/>
+                <div style={{display: "inline-block"}}>
+                    <a href={post.postLink.url} style={{color: "#1976D2"}}>{post.postLink.description}</a><br/>
+                    <span className="post-summary">
+                        submitted {post.createdAt} by <a href={"#"}>{post.postLink.postedBy.name}</a> to <a href={"#"}>{post.blog.name}</a><br/>
+                        <FontAwesomeIcon
+                            icon={faCommentAlt}
+                            pull="left"
+                            fixedWidth/>
+                            <a href={"#"} onClick={this.commentsClicked}>
+                                {post.commentList.count} comments
+                            </a>
+                        {this.renderComments()}
+                    </span>
+                </div>
             </div>
         )
     }
