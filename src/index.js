@@ -13,8 +13,6 @@ import { InMemoryCache } from 'apollo-cache-inmemory';
 
 import PostList from './components/PostList';
 
-import gql from 'graphql-tag';
-
 const authLink = setContext((_, { headers }) => {
     // get the authentication token from local storage if it exists
     const token = localStorage.getItem('authToken');
@@ -46,8 +44,6 @@ const client = new ApolloClient({
         dataIdFromObject: object => object.id,
     }),
 });
-
-console.log(client);
 
 ReactDOM.render(
     <Router>

@@ -35,11 +35,21 @@ const CREATE_COMMENT_MUTATION = gql`
     mutation CreateCommentMutation($subjectId: String!, $text: String!) {
         createComment(subjectId: $subjectId, text: $text) {
             id
+            subjectId
             text
             createdAt
-            subjectId
             user{
-              name
+                name
+            }
+            voteTotal
+            voteList{
+                count
+            }
+            commentList{
+                count
+                comments{
+                  id
+                }
             }
         }
     }
@@ -111,6 +121,7 @@ const CreatePageWithMutation = graphql(CREATE_COMMENT_MUTATION, {
             };
 
             updateByFetchingObjectById();
+            // updateByFindingObjectInCache();
         },
         //#3
         //This one is real simple, go back to the server and fetch the allPosts query again, not very efficient, but effective
