@@ -1,6 +1,7 @@
 import React from 'react'
 import FontAwesomeIcon from '@fortawesome/react-fontawesome'
 import {faReply, faArrowCircleDown, faArrowCircleRight} from '@fortawesome/fontawesome-free-solid'
+import TimeAgo from 'react-timeago'
 
 import CommentsCommentsList from './CommentsCommentsList'
 import CommentCreate from './CommentCreate'
@@ -96,7 +97,7 @@ class Comment extends React.Component {
                 {this.renderCollapseArrow()}
                 <div style={{paddingBottom: "5px"}}>
                     <div style={{display: "inline-block"}}>
-                        <a href={"#"} style={{color: "#9E9E9E"}}>{comment.user.name}</a> - {comment.createdAt}
+                        <a href={"#"} style={{color: "#9E9E9E"}}>{comment.user.name}</a> - <TimeAgo date={comment.createdAt} live={false}/>
                         &nbsp;
                         <a href={"#"} onClick={this.replyClicked}>
                             <FontAwesomeIcon
