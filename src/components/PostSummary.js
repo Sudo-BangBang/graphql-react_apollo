@@ -41,7 +41,7 @@ class PostSummary extends React.Component {
                     <span className="post-summary">
                         submitted <TimeAgo date={post.createdAt}/> by&nbsp;
                         <a href={"#"}>{post.postLink.postedBy.name}</a> to&nbsp;
-                        <a href={"#"}>{post.blog.name}</a>
+                        <a href={"/r/"+post.blog.name}>{post.blog.name}</a>
                         <br/>
                         <FontAwesomeIcon
                             icon={faCommentAlt}

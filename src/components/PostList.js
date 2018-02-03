@@ -18,8 +18,8 @@ class PostList extends React.Component {
                 </div>
             )
         }
-
         return (
+
             <div>
                 {this.props.allPostsQuery.allPosts.map(post => (
                     <PostSummary post={post} key={post.id}/>
@@ -31,9 +31,13 @@ class PostList extends React.Component {
 
 const PostListWithQuery = graphql(ALL_POSTS_QUERY, {
     name: 'allPostsQuery',
-    options: {
+    options: ({blogId}) =>({
         fetchPolicy: 'cache-and-network',
-    },
+        variables:{
+            blogId: blogId
+        }
+    }),
+
 })(PostList);
 
 export default PostListWithQuery

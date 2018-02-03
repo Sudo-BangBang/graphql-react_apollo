@@ -11,7 +11,7 @@ import { createHttpLink } from 'apollo-link-http';
 import { setContext } from 'apollo-link-context';
 import { InMemoryCache } from 'apollo-cache-inmemory';
 
-import PostList from './components/PostList';
+import BlogList from './components/BlogList';
 
 const authLink = setContext((_, { headers }) => {
     // get the authentication token from local storage if it exists
@@ -49,9 +49,10 @@ ReactDOM.render(
     <Router>
         <ApolloProvider client={client}>
             <div>
-                <Route exact path='/' component={App} />
-                <Route exact path='/test' component={App} />
-                <PostList></PostList>
+                <App/>
+                <Route exact path='/r/:blogName' component={BlogList}/>
+                <Route exact path='/r/' component={BlogList} />
+                <Route exact path='/' component={BlogList} />
             </div>
         </ApolloProvider>
     </Router>

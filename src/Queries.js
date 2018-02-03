@@ -16,8 +16,8 @@ fragment comment on Comment{
 `;
 
 export const ALL_POSTS_QUERY = gql`
-query AllPostsQuery {
-    allPosts{
+query AllPostsQuery($blogId: String) {
+    allPosts(filter: {blog_id: $blogId}){
         id
         createdAt
         postLink{
@@ -54,4 +54,14 @@ query AllPostsQuery {
         }
     }
 }${FRAGMENT_COMMENT}
+`;
+
+export const ALL_BLOGS_QUERY = gql`
+query AllBlogsQuery {
+    allBlogs{
+    id
+    name
+    description
+  }
+}
 `;
