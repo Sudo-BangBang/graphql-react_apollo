@@ -34,11 +34,17 @@ class PostSummary extends React.Component {
     render() {
         let post = this.props.post;
 
+        let link = post.postLink.url;
+
+        if(!link.startsWith("http://")){
+            link = "http://"+link;
+        }
+
         return (
             <div className="post" key={post.id}>
                 <PostVotes postId={post.id} voteTotal={post.voteTotal}/>
                 <div style={{display: "inline-block"}}>
-                    <a href={post.postLink.url} style={{color: "#1976D2"}}>{post.postLink.description}</a><br/>
+                    <a href={link} style={{color: "#1976D2"}}>{post.postLink.description}</a><br/>
                     <span className="post-summary">
                         submitted <TimeAgo date={post.createdAt}/> by&nbsp;
                         <a href={"#"}>{post.postLink.postedBy.name}</a> to&nbsp;
