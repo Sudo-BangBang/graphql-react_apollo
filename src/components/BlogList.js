@@ -4,6 +4,7 @@ import {Link} from 'react-router-dom';
 
 import {ALL_BLOGS_QUERY} from '../Queries'
 import PostList from './PostList'
+import BlogCrate from './BlogCreate'
 
 class BlogList extends React.Component {
 
@@ -82,6 +83,7 @@ class BlogList extends React.Component {
                             </span>
                         </span>
                     ))}
+                    <BlogCrate/>
                     <div style={{display: "inlineBlock", float: "right"}}>
                         <button className={this.state.selectedSort===0?"button-primary":"button-secondary"} onClick={()=>{this.handleSort("voteTotal", false, 0)}}>highest voted</button>
                         <button className={this.state.selectedSort===1?"button-primary":"button-secondary"} onClick={()=>{this.handleSort("voteTotal", true, 1)}}>lowest voted</button>
