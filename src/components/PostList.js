@@ -31,14 +31,22 @@ class PostList extends React.Component {
 
 const PostListWithQuery = graphql(ALL_POSTS_QUERY, {
     name: 'allPostsQuery',
-    options: ({blogId, sort}) =>({
-        fetchPolicy: 'cache-and-network',
-        variables:{
+    options: ({blogId, sort}) =>{
+
+        let variables = {
             blogId: blogId,
             field: sort.field,
             ascending: sort.ascending
-        }
-    }),
+        };
+
+        //We need these over in PostCreate to know which allPosts query to update, if this app had state management I
+        // would put it there, but for now its going in localStorage
+        localStorage.setItem("allPostsVariables", JSON.stringify(variables));
+
+        return ({
+        fetchPolicy: 'cache-and-network',
+        variables: variables
+    })},
 
 })(PostList);
 

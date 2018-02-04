@@ -14,6 +14,8 @@ import { InMemoryCache } from 'apollo-cache-inmemory';
 import BlogList from './components/BlogList';
 
 const authLink = setContext((_, { headers }) => {
+
+
     // get the authentication token from local storage if it exists
     const token = localStorage.getItem('authToken');
     // return the headers to the context so httpLink can read them

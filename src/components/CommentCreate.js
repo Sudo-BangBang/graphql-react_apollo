@@ -12,18 +12,24 @@ class CommentCreate extends React.Component {
 
     render() {
 
-        return (
-            <div>
+        if ("authToken" in localStorage) {
+           return (
+                <div>
                 <textarea
                     value={this.state.comment}
                     onChange={e => this.setState({comment: e.target.value})}/><br/>
-                <button className="button-primary" onClick={this.handlePost}>Post</button>
-            </div>
-        )
+                    <button className="button-primary" onClick={this.handlePost}>Post</button>
+                </div>
+            )
+        }else{
+            return(
+                <span>Login to leave a comment</span>
+            )
+        }
     }
 
     handlePost = async () => {
-        const comment= this.state.comment;
+        const comment = this.state.comment;
         const subjectId = this.props.subjectId;
         await this.props.createCommentMutation({variables: {subjectId: subjectId, text: comment}});
         this.setState({comment: ""});
@@ -59,7 +65,7 @@ const CreatePageWithMutation = graphql(CREATE_COMMENT_MUTATION, {
     name: 'createCommentMutation',
     options: {
         // Kept because this is some really handy code to reference
-        update: (proxy, { data: { createComment } }) => {
+        update: (proxy, {data: {createComment}}) => {
 
             //Bellow are 3 ways to update the local cache (and hence to application state and UI) after a mutation
 
@@ -67,9 +73,9 @@ const CreatePageWithMutation = graphql(CREATE_COMMENT_MUTATION, {
             //This updates the cache for a whole query, it works if you can locate the data you need to update
             // but since we could be commenting on a post or any comment on several different levels it doesn't really work for us
             // bellow shows how it would be done if we knew we were commenting on a post
-            var updateByFindingObjectInCache = function(){
+            var updateByFindingObjectInCache = function () {
                 //When the mutation returns get the all posts query cache
-                const data = proxy.readQuery({ query: ALL_POSTS_QUERY });
+                const data = proxy.readQuery({query: ALL_POSTS_QUERY});
                 //Find the post we are commenting on
                 let post = data.allPosts.filter(function (post) {
                     return post.id === createComment.subjectId;
@@ -89,7 +95,7 @@ const CreatePageWithMutation = graphql(CREATE_COMMENT_MUTATION, {
             // apollo seems to be getting upset at me (probably rightly so) for not using GraphQl schema interfaces properly
             // but I don't have time to keep going down this particular rabbit hole right now and this is working pretty well
             // obviously take the time to use interfaces properly before using this in a real scenario
-            var updateByFetchingObjectById = function(){
+            var updateByFetchingObjectById = function () {
                 var commentListFragment = gql`
                 fragment comment on Object{
                     commentList{

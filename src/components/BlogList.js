@@ -5,6 +5,7 @@ import {Link} from 'react-router-dom';
 import {ALL_BLOGS_QUERY} from '../Queries'
 import PostList from './PostList'
 import BlogCrate from './BlogCreate'
+import PostCreate from './PostCreate'
 
 class BlogList extends React.Component {
 
@@ -30,10 +31,10 @@ class BlogList extends React.Component {
             blog.description = "All Posts"
         }
         return(
-            <div style={{padding: "10px 10px 10px 10px", borderBottom: "1px solid #616161"}} >
+            <span>
                 <div style={{color: "#42A5F5"}}>{blog.name} </div>
                 {blog.description}
-            </div>
+            </span>
         )
     }
 
@@ -91,7 +92,15 @@ class BlogList extends React.Component {
                         <button className={this.state.selectedSort===3?"button-primary":"button-secondary"} onClick={()=>{this.handleSort("createdAt", true, 3)}}>oldest</button>
                     </div>
                 </div>
-                {this.renderCurrentBlog(currentBlog)}
+                <div style={{padding: "10px 10px 10px 10px", borderBottom: "1px solid #616161"}} >
+                    <div style={{display: "inline-block"}}>
+                    {this.renderCurrentBlog(currentBlog)}
+                    </div>
+                    <div style={{display: "inline-block", float: "right"}}>
+                        <PostCreate blogId={currentBlog.id}/>
+                    </div>
+                </div>
+
                 <div>
                     <PostList blogId={currentBlog.id} sort={this.state.sort}/>
                 </div>
