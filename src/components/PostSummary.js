@@ -2,6 +2,7 @@ import React from 'react'
 import FontAwesomeIcon from '@fortawesome/react-fontawesome'
 import {faCommentAlt} from '@fortawesome/fontawesome-free-solid'
 import TimeAgo from 'react-timeago'
+import {Link} from 'react-router-dom';
 
 import CommentsList from './CommentsList'
 import PostVotes from './PostVotes'
@@ -41,7 +42,7 @@ class PostSummary extends React.Component {
                     <span className="post-summary">
                         submitted <TimeAgo date={post.createdAt}/> by&nbsp;
                         <a href={"#"}>{post.postLink.postedBy.name}</a> to&nbsp;
-                        <a href={"/r/"+post.blog.name}>{post.blog.name}</a>
+                        <Link to={"/r/"+post.blog.name}>{post.blog.name}</Link>
                         <br/>
                         <FontAwesomeIcon
                             icon={faCommentAlt}

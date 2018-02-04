@@ -1,5 +1,6 @@
 import React from 'react'
 import {graphql} from 'react-apollo'
+import {Link} from 'react-router-dom';
 
 import {ALL_BLOGS_QUERY} from '../Queries'
 import PostList from './PostList'
@@ -71,13 +72,13 @@ class BlogList extends React.Component {
             <div>
                 <div style={{backgroundColor: "#616161", padding: "5px"}}>
                     <span style={{paddingLeft: "10px", paddingRight: "10px"}}>
-                        <a href={"/r/"} style={{color: "#42A5F5"}}>All</a>
+                        <Link to={"/r/"} style={{color: "#42A5F5"}}>All</Link>
                     </span>
                     {this.props.allBlogsQuery.allBlogs.map(blog =>(
                         <span key={blog.id} >
                             <span style={{color: "#9E9E9E"}}>|</span>
                             <span style={{paddingLeft: "10px", paddingRight: "10px"}}>
-                                <a href={"/r/"+blog.name} style={{color: "#42A5F5"}}>{blog.name}</a>
+                                <Link to={"/r/"+blog.name} style={{color: "#42A5F5"}}>{blog.name}</Link>
                             </span>
                         </span>
                     ))}
