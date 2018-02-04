@@ -31,10 +31,12 @@ class PostList extends React.Component {
 
 const PostListWithQuery = graphql(ALL_POSTS_QUERY, {
     name: 'allPostsQuery',
-    options: ({blogId}) =>({
+    options: ({blogId, sort}) =>({
         fetchPolicy: 'cache-and-network',
         variables:{
-            blogId: blogId
+            blogId: blogId,
+            field: sort.field,
+            ascending: sort.ascending
         }
     }),
 

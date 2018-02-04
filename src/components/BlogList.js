@@ -6,6 +6,21 @@ import PostList from './PostList'
 
 class BlogList extends React.Component {
 
+
+    constructor(props){
+        super(props);
+        this.state = {
+            selectedSort: 0,
+            sort:{
+                field: "voteTotal",
+                ascending: false
+            }
+        };
+
+        this.handleSort = this.handleSort.bind(this);
+    }
+
+
     renderCurrentBlog(blog){
 
         if(!blog.name) {
@@ -18,6 +33,17 @@ class BlogList extends React.Component {
                 {blog.description}
             </div>
         )
+    }
+
+    handleSort(field, ascending, index){
+        this.setState({
+            selectedSort: index,
+            sort:{
+                field: field,
+                ascending: ascending
+            }
+
+        });
     }
 
     render() {
@@ -39,8 +65,8 @@ class BlogList extends React.Component {
             }
         }.bind(this));
 
-
         return (
+
 
             <div>
                 <div style={{backgroundColor: "#616161", padding: "5px"}}>
@@ -55,10 +81,16 @@ class BlogList extends React.Component {
                             </span>
                         </span>
                     ))}
+                    <div style={{display: "inlineBlock", float: "right"}}>
+                        <button className={this.state.selectedSort===0?"button-primary":"button-secondary"} onClick={()=>{this.handleSort("voteTotal", false, 0)}}>highest voted</button>
+                        <button className={this.state.selectedSort===1?"button-primary":"button-secondary"} onClick={()=>{this.handleSort("voteTotal", true, 1)}}>lowest voted</button>
+                        <button className={this.state.selectedSort===2?"button-primary":"button-secondary"} onClick={()=>{this.handleSort("createdAt", false, 2)}}>newest</button>
+                        <button className={this.state.selectedSort===3?"button-primary":"button-secondary"} onClick={()=>{this.handleSort("createdAt", true, 3)}}>oldest</button>
+                    </div>
                 </div>
                 {this.renderCurrentBlog(currentBlog)}
                 <div>
-                    <PostList blogId={currentBlog.id}/>
+                    <PostList blogId={currentBlog.id} sort={this.state.sort}/>
                 </div>
             </div>
         )

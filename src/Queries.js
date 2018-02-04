@@ -16,8 +16,8 @@ fragment comment on Comment{
 `;
 
 export const ALL_POSTS_QUERY = gql`
-query AllPostsQuery($blogId: String) {
-    allPosts(filter: {blog_id: $blogId}){
+query AllPostsQuery($blogId: String, $field: String, $ascending: Boolean) {
+    allPosts(filter: {blog_id: $blogId}, sort: {field: $field, ascending: $ascending}){
         id
         createdAt
         postLink{
