@@ -26,7 +26,7 @@ class PostCreate extends React.Component {
 
         if (this.props.blogId === null || this.props.blogId === "" || !("authToken" in localStorage)) {
             return(
-                <span>Select a blog and sign in to crate a new post</span>
+                <span>Select a blog and sign in to create a new post</span>
             )
         } else {
             return (

@@ -19,7 +19,7 @@ export const FRAGMENT_POST = gql`
 fragment post on Post{
     id
     createdAt
-    postLink{
+    link{
         description
         url
         postedBy{
