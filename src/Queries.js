@@ -55,7 +55,7 @@ fragment post on Post{
 `;
 
 export const ALL_POSTS_QUERY = gql`
-query AllPostsQuery($blogId: String, $field: String, $ascending: Boolean) {
+query AllPostsQuery($blogId: String, $field: PostSortFieldEnumInput, $ascending: Boolean) {
     allPosts(filter: {blog_id: $blogId}, sort: {field: $field, ascending: $ascending}){
         ...post
     }

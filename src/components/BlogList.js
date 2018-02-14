@@ -15,7 +15,7 @@ class BlogList extends React.Component {
         this.state = {
             selectedSort: 0,
             sort:{
-                field: "voteTotal",
+                field: "VOTE_TOTAL",
                 ascending: false
             }
         };
@@ -86,10 +86,10 @@ class BlogList extends React.Component {
                     ))}
                     <BlogCrate/>
                     <div style={{display: "inlineBlock", float: "right"}}>
-                        <button className={this.state.selectedSort===0?"button-primary":"button-secondary"} onClick={()=>{this.handleSort("voteTotal", false, 0)}}>highest voted</button>
-                        <button className={this.state.selectedSort===1?"button-primary":"button-secondary"} onClick={()=>{this.handleSort("voteTotal", true, 1)}}>lowest voted</button>
-                        <button className={this.state.selectedSort===2?"button-primary":"button-secondary"} onClick={()=>{this.handleSort("createdAt", false, 2)}}>newest</button>
-                        <button className={this.state.selectedSort===3?"button-primary":"button-secondary"} onClick={()=>{this.handleSort("createdAt", true, 3)}}>oldest</button>
+                        <button className={this.state.selectedSort===0?"button-primary":"button-secondary"} onClick={()=>{this.handleSort("VOTE_TOTAL", false, 0)}}>highest voted</button>
+                        <button className={this.state.selectedSort===1?"button-primary":"button-secondary"} onClick={()=>{this.handleSort("VOTE_TOTAL", true, 1)}}>lowest voted</button>
+                        <button className={this.state.selectedSort===2?"button-primary":"button-secondary"} onClick={()=>{this.handleSort("CREATED_AT", false, 2)}}>newest</button>
+                        <button className={this.state.selectedSort===3?"button-primary":"button-secondary"} onClick={()=>{this.handleSort("CREATED_AT", true, 3)}}>oldest</button>
                     </div>
                 </div>
                 <div style={{padding: "10px 10px 10px 10px", borderBottom: "1px solid #616161"}} >
